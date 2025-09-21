@@ -114,5 +114,13 @@ Au niveau des deux graphiques, il n'y a pas vraiment de relation plus forte pour
 Recréez la visualisation:
 
 ```{r recreate-viz}
-# insert code here
+plastic_waste_coastal <- plastic_waste %>% 
+  mutate(coastal_pop_prop = coastal_pop / total_pop) %>%
+  filter(plastic_waste_per_cap < 3)
+ggplot(plastic_waste_coastal,aes(x=coastal_pop_prop, y=plastic_waste_per_cap))+
+  geom_point(aes(color=continent))+
+  geom_smooth(color="black",se=TRUE, method="loess")+
+  labs(title="Quantité de déchets plastiques vs Proportion de la population côtière",subtitle="Selon le continent", x="Proportion de la population côtière (Coastal / total population)", y="Nombre de déchets plastiques par habitant")
 ```
+
+Je dirais que la production de déchets plastiques par habitant est assez indépendante de la proportion de la population côtière. Il y a tout de même une légère augmentation de la production par habitant dans les pays où la proportion de population côtière est modérée, mais ce n'est pas une tendance qui est linéaire ou uniforme selon les continents.
