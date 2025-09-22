@@ -48,8 +48,9 @@ ggplot(plastic_waste, aes(x=plastic_waste_per_cap))+
 ``` r
 plastic_waste <- plastic_waste %>%
   filter(plastic_waste_per_cap < 3.5)
-ggplot(plastic_waste, aes(x=plastic_waste_per_cap, fill=continent)) +
-  geom_density(alpha=0.2)
+ggplot(plastic_waste, aes(x=plastic_waste_per_cap, fill=continent, color=continent)) +
+  geom_density(alpha=0.2)+
+  labs(title="Distribution de la quantité de déchets plastiques par habitant selon les continents", x="Déchets plastiques par habitant (kg/jour)", y="Densité")
 ```
 
 ![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- --> Le
@@ -69,7 +70,8 @@ Boxplot:
 plastic_waste <- plastic_waste %>%
   filter(plastic_waste_per_cap < 3.5)
 ggplot(plastic_waste, aes(x=continent, y=plastic_waste_per_cap)) +
-  geom_boxplot()
+  geom_boxplot()+
+  labs(title="Distribution de la quantité de déchets plastiques par habitant selon les continents", x="Continent", y="Déchets plastiques par habitant (kg/jour)")
 ```
 
 ![](lab-02_files/figure-gfm/plastic-waste-boxplot-1.png)<!-- -->
@@ -80,7 +82,8 @@ Violin plot:
 plastic_waste <- plastic_waste %>%
   filter(plastic_waste_per_cap < 3.5)
 ggplot(plastic_waste, aes(x=continent, y=plastic_waste_per_cap)) +
-  geom_violin()
+  geom_violin()+
+  labs(title="Distribution de la quantité de déchets plastiques par habitant selon les continents", x="Continent", y="Déchets plastiques par habitant (kg/jour)")
 ```
 
 ![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
@@ -139,11 +142,16 @@ ggplot(plastic_waste, aes(x=plastic_waste_per_cap, y=coastal_pop))+
 ![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
 Au niveau des deux graphiques, il n’y a pas vraiment de relation plus
-forte pour l’une des paires de variables. Les points sont assez
-dispersés horizontalement et cela indique que la production de déchets
-par habitant est relativement indépendante de la population.La
-différence principale est seulement au niveau de l’échelle de la
-population, qui est plus vaste au niveau de la population totale.
+forte pour l’une des paires de variables. Sur les deux graphiques, les
+points sont assez dispersés horizontalement et cela indique que la
+production de déchets par habitant est relativement indépendante de la
+population. La différence principale est seulement au niveau de
+l’échelle de la population, qui est plus vaste au niveau de la
+population totale. Cela fait en sorte que le graphique sur les
+populations totales est plus difficile à lire en raison des très grands
+pays qui tirent l’échelle vers le haut. Cependant, même si le graphique
+sur les populations côtières donne une meilleure répartition, la
+tendance reste très faible.
 
 ## Conclusion
 
